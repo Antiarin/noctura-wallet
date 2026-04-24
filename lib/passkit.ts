@@ -112,6 +112,7 @@ export async function createTicket(
     },
     metaData: {
       tier: input.tier,
+      type: tierInfo.label,
       status: "Upcoming" satisfies TicketStatus,
     },
   };
