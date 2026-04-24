@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Noctura">
+  <defs>
+    <radialGradient id="nocturaDisc" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF2B6D"/>
+      <stop offset="70%" stop-color="#C41855"/>
+      <stop offset="100%" stop-color="#7A0E34"/>
+    </radialGradient>
+    <linearGradient id="nocturaRing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF2B6D" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#FF2B6D" stop-opacity="0.15"/>
+    </linearGradient>
+  </defs>
+  <rect width="160" height="160" rx="32" fill="#0A0306"/>
+  <circle cx="80" cy="80" r="56" fill="none" stroke="url(#nocturaRing)" stroke-width="2"/>
+  <circle cx="80" cy="80" r="42" fill="url(#nocturaDisc)"/>
+  <circle cx="104" cy="64" r="18" fill="#0A0306"/>
+  <g font-family="'Space Grotesk', system-ui, sans-serif" font-weight="700" fill="#F4E9EC">
+    <text x="80" y="148" text-anchor="middle" font-size="12" letter-spacing="4">NOCTURA</text>
+  </g>
+</svg>

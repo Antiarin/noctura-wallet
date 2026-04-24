@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@theme {
+  --color-noctura-bg: #0a0306;
+  --color-noctura-surface: #1a0a10;
+  --color-noctura-surface-2: #22101a;
+  --color-noctura-border: #3d1220;
+  --color-noctura-border-strong: #5a1a30;
+  --color-noctura-accent: #ff2b6d;
+  --color-noctura-accent-dim: #c41855;
+  --color-noctura-ink: #f4e9ec;
+  --color-noctura-ink-muted: #8a6f78;
+  --color-noctura-ink-dim: #5c4750;
+
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --radius-ticket: 20px;
+}
+
+@layer base {
+  html,
+  body {
+    background-color: var(--color-noctura-bg);
+    color: var(--color-noctura-ink);
+    font-family: var(--font-display);
+  }
+
+  body {
+    background-image:
+      radial-gradient(
+        ellipse 80% 50% at 50% -10%,
+        rgba(255, 43, 109, 0.18),
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse 60% 50% at 80% 100%,
+        rgba(196, 24, 85, 0.12),
+        transparent 60%
+      );
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity: 0.4;
+    mix-blend-mode: overlay;
+    z-index: 1;
+  }
+
+  ::selection {
+    background-color: var(--color-noctura-accent);
+    color: var(--color-noctura-bg);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .ticket-glow {
+    box-shadow:
+      0 0 0 1px var(--color-noctura-border-strong),
+      0 20px 60px -20px rgba(255, 43, 109, 0.35),
+      0 40px 100px -40px rgba(0, 0, 0, 0.6);
+  }
+}
