@@ -8,12 +8,8 @@ import type { AttendeeInput } from "./pass-schema";
 const PASSKIT_API_BASE = "https://api.pub1.passkit.io";
 const PASSKIT_SHORT_BASE = "https://pub1.pskt.io";
 
-/**
- * Signs a per-request JWT for PassKit's REST API.
- * Docs: https://help.passkit.com/en/articles/4225662-authenticate-rest-requests-using-jwt
- * HS256 shared-secret with a body-bound signature claim so tokens can't be replayed
- * against a different endpoint or with a mutated body.
- */
+// The `signature` claim binds the JWT to this specific body, so tokens can't be
+// replayed with a mutated payload. Docs: https://help.passkit.com/en/articles/4225662
 function signAuthJwt(
   keyId: string,
   apiSecret: string,
@@ -79,7 +75,7 @@ async function passkitFetch<T>(
 
   if (!res.ok) {
     throw new PassKitError(
-      `PassKit ${res.status} on ${init.method ?? "GET"} ${path}`,
+      `PassKit ${res.status} on ${method} ${path}`,
       res.status,
       parsed,
     );
@@ -93,10 +89,8 @@ type PassKitTicketResponse = {
   ticketId?: string;
 };
 
-/**
- * Issues a new event ticket against the template configured in env.
- * Returns the PassKit short URL, which user-agent-detects and serves the correct wallet.
- */
+// walletUrl uses PassKit's short domain, which serves the correct wallet format
+// based on User-Agent (iOS → .pkpass, Android → Google Wallet save link).
 export async function createTicket(
   input: AttendeeInput,
 ): Promise<{ ticketId: string; walletUrl: string }> {
@@ -138,10 +132,8 @@ export async function createTicket(
   };
 }
 
-/**
- * Updates a ticket's status field. PassKit pushes an APNs update automatically
- * when the template's relevant fields are marked for push.
- */
+// Relies on the "status" field being flagged push-enabled in the PassKit template,
+// otherwise the update is stored but never reaches the device.
 export async function updateTicketStatus(
   ticketId: string,
   status: TicketStatus,

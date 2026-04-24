@@ -85,11 +85,8 @@ async function walletFetch<T>(
   return parsed as T;
 }
 
-/**
- * Creates (or upserts) an EventTicketObject on the Google Wallet side with the
- * user's name baked in, then signs a small JWT that references it by ID.
- * The small reference-only JWT stays well under Google's 1800-char safe limit.
- */
+// The object is pre-created via REST so the save JWT can reference it by ID only,
+// keeping the JWT under Google's 1800-char safe limit even for long ticket data.
 export async function createSaveUrl(
   input: AttendeeInput,
 ): Promise<{ saveUrl: string; objectId: string }> {
@@ -136,17 +133,16 @@ export async function createSaveUrl(
     ],
   };
 
-  // Upsert — create, ignore 409 (already exists).
   try {
     await walletFetch("/eventTicketObject", {
       method: "POST",
       body: eventTicketObject,
     });
   } catch (err) {
+    // 409 = object already exists; safe to proceed with the save JWT.
     if (!(err instanceof GoogleWalletError) || err.statusCode !== 409) {
       throw err;
     }
-    // Already exists, proceed.
   }
 
   const claims = {
@@ -170,10 +166,6 @@ export async function createSaveUrl(
   };
 }
 
-/**
- * Pushes a live update to a Google Wallet object. Google propagates the change
- * to the user's device automatically.
- */
 export async function updateObjectStatus(
   objectId: string,
   status: TicketStatus,
@@ -197,10 +189,7 @@ export async function updateObjectStatus(
   });
 }
 
-/**
- * One-time bootstrap: creates the Noctura event class on Google's side.
- * Intended to be called from scripts/bootstrap-google-class.ts, not from runtime.
- */
+// Called only from scripts/bootstrap-google-class.ts, never at request time.
 export async function bootstrapClass(
   classSuffix = "noctura-midnight-signal",
 ): Promise<string> {
@@ -231,10 +220,10 @@ export async function bootstrapClass(
   try {
     await walletFetch("/eventTicketClass", { method: "POST", body });
   } catch (err) {
+    // 409 = class already exists; idempotent bootstrap.
     if (!(err instanceof GoogleWalletError) || err.statusCode !== 409) {
       throw err;
     }
-    // Already exists, ok.
   }
 
   return classId;

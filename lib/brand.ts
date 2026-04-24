@@ -1,8 +1,3 @@
-export const BRAND = {
-  issuer: "NOCTURA",
-  tagline: "UNDERGROUND ELECTRONIC",
-} as const;
-
 export const EVENT = {
   title: "Midnight Signal",
   subtitle: "NOCTURA PRESENTS",
@@ -32,26 +27,10 @@ export const TIERS = {
 export type TicketTier = keyof typeof TIERS;
 
 export const TICKET_STATUS = {
-  Upcoming: {
-    label: "Upcoming",
-    note: "See you Saturday",
-    color: "#8A6F78",
-  },
-  "Doors Open": {
-    label: "Doors Open",
-    note: "Make your way in",
-    color: "#FFB84D",
-  },
-  "Live Now": {
-    label: "Live Now",
-    note: "Event in progress",
-    color: "#FF2B6D",
-  },
-  Ended: {
-    label: "Ended",
-    note: "Thanks for coming",
-    color: "#5C4750",
-  },
+  Upcoming: { label: "Upcoming", color: "#8A6F78" },
+  "Doors Open": { label: "Doors Open", color: "#FFB84D" },
+  "Live Now": { label: "Live Now", color: "#FF2B6D" },
+  Ended: { label: "Ended", color: "#5C4750" },
 } as const;
 
 export type TicketStatus = keyof typeof TICKET_STATUS;

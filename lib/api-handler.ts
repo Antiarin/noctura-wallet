@@ -4,7 +4,6 @@ import {
   GoogleWalletError,
   PassKitError,
   ValidationError,
-  isKnownError,
 } from "./errors";
 
 type ErrorBody = {
@@ -58,5 +57,3 @@ export function errorResponse(err: unknown): NextResponse<ErrorBody> {
     { status: 500 },
   );
 }
-
-export { isKnownError };

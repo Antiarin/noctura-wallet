@@ -28,7 +28,6 @@ export function TicketPreview({
         className="ticket-glow relative overflow-hidden rounded-[var(--radius-ticket)]"
         style={{ aspectRatio: "1 / 1.586" }}
       >
-        {/* top half — event info */}
         <div
           className="absolute inset-x-0 top-0 flex h-[58%] flex-col justify-between p-6"
           style={{
@@ -83,7 +82,6 @@ export function TicketPreview({
           </div>
         </div>
 
-        {/* perforation */}
         <div
           className="absolute inset-x-0 h-[1px]"
           style={{
@@ -101,7 +99,6 @@ export function TicketPreview({
           style={{ top: "calc(58% - 12px)" }}
         />
 
-        {/* bottom half — QR + tier + status */}
         <div
           className="absolute inset-x-0 bottom-0 flex h-[42%] flex-col justify-between p-6"
           style={{
