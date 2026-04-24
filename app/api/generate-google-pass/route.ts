@@ -25,7 +25,11 @@ export async function POST(request: Request) {
     }
 
     const { ticketId, walletUrl } = await createTicket(parsed.data);
-    return NextResponse.json({ saveUrl: walletUrl, objectId: ticketId });
+    // `.gpay` suffix forces Google Wallet flow even on iOS user agents.
+    return NextResponse.json({
+      saveUrl: `${walletUrl}.gpay`,
+      objectId: ticketId,
+    });
   } catch (err) {
     return errorResponse(err);
   }
