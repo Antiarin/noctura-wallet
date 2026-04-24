@@ -4,6 +4,9 @@ const appleSchema = z.object({
   PASSKIT_API_KEY: z.string().min(1),
   PASSKIT_API_SECRET: z.string().min(1),
   PASSKIT_TEMPLATE_ID: z.string().min(1),
+  PASSKIT_PRODUCTION_ID: z.string().min(1),
+  PASSKIT_TICKET_TYPE_ID: z.string().min(1),
+  PASSKIT_VENUE_ID: z.string().min(1),
 });
 
 const googleSchema = z.object({
@@ -29,6 +32,9 @@ export function readAppleConfig(): Result<AppleConfig> {
     PASSKIT_API_KEY: process.env.PASSKIT_API_KEY,
     PASSKIT_API_SECRET: process.env.PASSKIT_API_SECRET,
     PASSKIT_TEMPLATE_ID: process.env.PASSKIT_TEMPLATE_ID,
+    PASSKIT_PRODUCTION_ID: process.env.PASSKIT_PRODUCTION_ID,
+    PASSKIT_TICKET_TYPE_ID: process.env.PASSKIT_TICKET_TYPE_ID,
+    PASSKIT_VENUE_ID: process.env.PASSKIT_VENUE_ID,
   });
 
   if (!parsed.success) {

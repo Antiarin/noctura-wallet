@@ -20,7 +20,7 @@ function signAuthJwt(
 ): string {
   const now = Math.floor(Date.now() / 1000);
   const payload: Record<string, string | number> = {
-    key: keyId,
+    uid: keyId,
     iat: now,
     exp: now + 30,
     url,
@@ -58,7 +58,7 @@ async function passkitFetch<T>(
   const res = await fetch(fullUrl, {
     method,
     headers: {
-      Authorization: `PKAuth ${token}`,
+      Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
       Accept: "application/json",
     },
@@ -101,15 +101,13 @@ export async function createTicket(
   const tierInfo = TIERS[input.tier];
 
   const body = {
-    passTemplate: { id: cfg.value.PASSKIT_TEMPLATE_ID },
+    passTemplateId: cfg.value.PASSKIT_TEMPLATE_ID,
+    ticketTypeId: cfg.value.PASSKIT_TICKET_TYPE_ID,
     person: { displayName: input.name },
-    ticketType: {
-      uid: input.tier.toLowerCase(),
-      name: tierInfo.label,
-    },
     event: {
+      productionId: cfg.value.PASSKIT_PRODUCTION_ID,
+      venueId: cfg.value.PASSKIT_VENUE_ID,
       scheduledStartDate: EVENT.dateISO,
-      venue: { name: EVENT.venue, address: EVENT.address },
     },
     metaData: {
       tier: input.tier,
