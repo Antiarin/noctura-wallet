@@ -5,8 +5,9 @@ import { PassKitError, ConfigError } from "./errors";
 import { EVENT, TIERS, type TicketStatus } from "./brand";
 import type { AttendeeInput } from "./pass-schema";
 
-const PASSKIT_API_BASE = "https://api.pub1.passkit.io";
-const PASSKIT_SHORT_BASE = "https://pub1.pskt.io";
+const PASSKIT_REGION = process.env.PASSKIT_API_REGION ?? "pub1";
+const PASSKIT_API_BASE = `https://api.${PASSKIT_REGION}.passkit.io`;
+const PASSKIT_SHORT_BASE = `https://${PASSKIT_REGION}.pskt.io`;
 
 // The `signature` claim binds the JWT to this specific body, so tokens can't be
 // replayed with a mutated payload. Docs: https://help.passkit.com/en/articles/4225662
