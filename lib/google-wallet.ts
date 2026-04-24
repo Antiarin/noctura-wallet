@@ -201,7 +201,9 @@ export async function updateObjectStatus(
  * One-time bootstrap: creates the Noctura event class on Google's side.
  * Intended to be called from scripts/bootstrap-google-class.ts, not from runtime.
  */
-export async function bootstrapClass(classSuffix = "noctura-midnight-signal"): Promise<string> {
+export async function bootstrapClass(
+  classSuffix = "noctura-midnight-signal",
+): Promise<string> {
   const cfg = readGoogleConfig();
   if (!cfg.ok) throw new ConfigError(cfg.missing);
 

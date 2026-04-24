@@ -23,14 +23,14 @@ export function TicketPreview({
   const displayName = name.trim() || "YOUR NAME";
 
   return (
-    <div className="relative w-full max-w-[380px] mx-auto">
+    <div className="relative mx-auto w-full max-w-[380px]">
       <div
-        className="relative rounded-[var(--radius-ticket)] overflow-hidden ticket-glow"
+        className="ticket-glow relative overflow-hidden rounded-[var(--radius-ticket)]"
         style={{ aspectRatio: "1 / 1.586" }}
       >
         {/* top half — event info */}
         <div
-          className="absolute inset-x-0 top-0 h-[58%] p-6 flex flex-col justify-between"
+          className="absolute inset-x-0 top-0 flex h-[58%] flex-col justify-between p-6"
           style={{
             background:
               "linear-gradient(165deg, #22101a 0%, #1a0a10 50%, #0a0306 100%)",
@@ -38,15 +38,15 @@ export function TicketPreview({
         >
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-[10px] tracking-[0.3em] text-noctura-accent font-mono">
+              <p className="text-noctura-accent font-mono text-[10px] tracking-[0.3em]">
                 {EVENT.subtitle}
               </p>
-              <h2 className="text-3xl font-bold mt-2 leading-none text-balance">
+              <h2 className="mt-2 text-3xl leading-none font-bold text-balance">
                 {EVENT.title}
               </h2>
             </div>
             <div
-              className="size-10 rounded-full flex items-center justify-center"
+              className="flex size-10 items-center justify-center rounded-full"
               style={{
                 background: "radial-gradient(circle, #ff2b6d 0%, #c41855 100%)",
               }}
@@ -57,27 +57,27 @@ export function TicketPreview({
 
           <div className="space-y-3">
             <div>
-              <p className="text-[10px] tracking-[0.25em] text-noctura-ink-muted font-mono">
+              <p className="text-noctura-ink-muted font-mono text-[10px] tracking-[0.25em]">
                 ATTENDEE
               </p>
-              <p className="text-xl font-semibold uppercase tracking-tight mt-0.5 truncate">
+              <p className="mt-0.5 truncate text-xl font-semibold tracking-tight uppercase">
                 {displayName}
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <p className="text-[10px] tracking-[0.25em] text-noctura-ink-muted font-mono">
+                <p className="text-noctura-ink-muted font-mono text-[10px] tracking-[0.25em]">
                   DATE
                 </p>
-                <p className="text-sm font-medium mt-0.5">
+                <p className="mt-0.5 text-sm font-medium">
                   {EVENT.dateDisplay}
                 </p>
               </div>
               <div>
-                <p className="text-[10px] tracking-[0.25em] text-noctura-ink-muted font-mono">
+                <p className="text-noctura-ink-muted font-mono text-[10px] tracking-[0.25em]">
                   VENUE
                 </p>
-                <p className="text-sm font-medium mt-0.5">{EVENT.venue}</p>
+                <p className="mt-0.5 text-sm font-medium">{EVENT.venue}</p>
               </div>
             </div>
           </div>
@@ -93,35 +93,34 @@ export function TicketPreview({
           }}
         />
         <div
-          className="absolute size-6 rounded-full bg-noctura-bg -left-3"
+          className="bg-noctura-bg absolute -left-3 size-6 rounded-full"
           style={{ top: "calc(58% - 12px)" }}
         />
         <div
-          className="absolute size-6 rounded-full bg-noctura-bg -right-3"
+          className="bg-noctura-bg absolute -right-3 size-6 rounded-full"
           style={{ top: "calc(58% - 12px)" }}
         />
 
         {/* bottom half — QR + tier + status */}
         <div
-          className="absolute inset-x-0 bottom-0 h-[42%] p-6 flex flex-col justify-between"
+          className="absolute inset-x-0 bottom-0 flex h-[42%] flex-col justify-between p-6"
           style={{
-            background:
-              "linear-gradient(165deg, #1a0a10 0%, #0a0306 80%)",
+            background: "linear-gradient(165deg, #1a0a10 0%, #0a0306 80%)",
           }}
         >
           <div className="flex items-start justify-between gap-4">
-            <div className="flex-1 min-w-0 space-y-2">
+            <div className="min-w-0 flex-1 space-y-2">
               <div>
-                <p className="text-[10px] tracking-[0.25em] text-noctura-ink-muted font-mono">
+                <p className="text-noctura-ink-muted font-mono text-[10px] tracking-[0.25em]">
                   TIER
                 </p>
-                <p className="text-sm font-semibold mt-0.5">{tierInfo.label}</p>
+                <p className="mt-0.5 text-sm font-semibold">{tierInfo.label}</p>
               </div>
               <div>
-                <p className="text-[10px] tracking-[0.25em] text-noctura-ink-muted font-mono">
+                <p className="text-noctura-ink-muted font-mono text-[10px] tracking-[0.25em]">
                   TICKET
                 </p>
-                <p className="text-[11px] font-mono mt-0.5 tracking-wider truncate">
+                <p className="mt-0.5 truncate font-mono text-[11px] tracking-wider">
                   {ticketNumber}
                 </p>
               </div>
@@ -129,7 +128,7 @@ export function TicketPreview({
             <TicketQr value={ticketNumber} />
           </div>
 
-          <div className="flex items-center justify-between pt-3 border-t border-noctura-border">
+          <div className="border-noctura-border flex items-center justify-between border-t pt-3">
             <div className="flex items-center gap-2">
               <span
                 className="size-2 rounded-full"
@@ -138,11 +137,11 @@ export function TicketPreview({
                   boxShadow: `0 0 8px ${statusInfo.color}`,
                 }}
               />
-              <span className="text-xs font-mono tracking-wider uppercase">
+              <span className="font-mono text-xs tracking-wider uppercase">
                 {statusInfo.label}
               </span>
             </div>
-            <p className="text-[10px] text-noctura-ink-muted font-mono">
+            <p className="text-noctura-ink-muted font-mono text-[10px]">
               {EVENT.ageRestriction} · {EVENT.doorsDisplay}
             </p>
           </div>
@@ -154,7 +153,7 @@ export function TicketPreview({
 
 function TicketQr({ value }: { value: string }) {
   return (
-    <div className="size-24 bg-noctura-ink p-1.5 rounded-md shrink-0">
+    <div className="bg-noctura-ink size-24 shrink-0 rounded-md p-1.5">
       <QRCodeSVG
         value={value}
         level="M"

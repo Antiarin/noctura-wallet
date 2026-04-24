@@ -22,7 +22,7 @@ export function AttendeeForm({
       <div>
         <label
           htmlFor="name"
-          className="block text-[10px] tracking-[0.3em] font-mono text-noctura-ink-muted mb-2"
+          className="text-noctura-ink-muted mb-2 block font-mono text-[10px] tracking-[0.3em]"
         >
           YOUR NAME
         </label>
@@ -34,12 +34,12 @@ export function AttendeeForm({
           placeholder="Type your name as it should appear on the ticket"
           maxLength={80}
           disabled={disabled}
-          className="w-full bg-noctura-surface border border-noctura-border rounded-lg px-4 py-3 text-noctura-ink placeholder:text-noctura-ink-dim focus:outline-none focus:border-noctura-accent focus:ring-1 focus:ring-noctura-accent transition disabled:opacity-50"
+          className="bg-noctura-surface border-noctura-border text-noctura-ink placeholder:text-noctura-ink-dim focus:border-noctura-accent focus:ring-noctura-accent w-full rounded-lg border px-4 py-3 transition focus:ring-1 focus:outline-none disabled:opacity-50"
         />
       </div>
 
       <div>
-        <p className="block text-[10px] tracking-[0.3em] font-mono text-noctura-ink-muted mb-2">
+        <p className="text-noctura-ink-muted mb-2 block font-mono text-[10px] tracking-[0.3em]">
           TIER
         </p>
         <div className="grid grid-cols-2 gap-2">
@@ -53,18 +53,18 @@ export function AttendeeForm({
                 disabled={disabled}
                 onClick={() => onTierChange(t)}
                 className={[
-                  "text-left rounded-lg px-4 py-3 border transition",
+                  "rounded-lg border px-4 py-3 text-left transition",
                   active
                     ? "bg-noctura-accent/10 border-noctura-accent text-noctura-ink"
                     : "bg-noctura-surface border-noctura-border text-noctura-ink-muted hover:border-noctura-border-strong hover:text-noctura-ink",
-                  disabled ? "opacity-50 cursor-not-allowed" : "",
+                  disabled ? "cursor-not-allowed opacity-50" : "",
                 ].join(" ")}
               >
                 <div className="flex items-baseline justify-between">
-                  <span className="font-semibold text-sm">{t}</span>
-                  <span className="text-xs font-mono">{info.priceDisplay}</span>
+                  <span className="text-sm font-semibold">{t}</span>
+                  <span className="font-mono text-xs">{info.priceDisplay}</span>
                 </div>
-                <p className="text-[11px] mt-1 leading-tight opacity-80">
+                <p className="mt-1 text-[11px] leading-tight opacity-80">
                   {info.description}
                 </p>
               </button>

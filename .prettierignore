@@ -1,0 +1,11 @@
+node_modules
+.next
+.vercel
+out
+coverage
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
+*.svg
+public/*.svg
+docs

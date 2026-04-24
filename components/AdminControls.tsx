@@ -36,7 +36,10 @@ export function AdminControls({
       setOutcome(json);
     } catch (e) {
       setOutcome({
-        apple: { status: "error", message: e instanceof Error ? e.message : "failed" },
+        apple: {
+          status: "error",
+          message: e instanceof Error ? e.message : "failed",
+        },
       });
     } finally {
       setPending(null);
@@ -47,15 +50,15 @@ export function AdminControls({
   const hasAnyPass = Boolean(appleTicketId || googleObjectId);
 
   return (
-    <div className="rounded-xl border border-dashed border-noctura-border bg-noctura-surface/50 p-4">
-      <div className="flex items-center gap-2 mb-3">
-        <span className="size-1.5 rounded-full bg-noctura-accent animate-pulse" />
-        <p className="text-[10px] tracking-[0.3em] font-mono text-noctura-accent">
+    <div className="border-noctura-border bg-noctura-surface/50 rounded-xl border border-dashed p-4">
+      <div className="mb-3 flex items-center gap-2">
+        <span className="bg-noctura-accent size-1.5 animate-pulse rounded-full" />
+        <p className="text-noctura-accent font-mono text-[10px] tracking-[0.3em]">
           DEMO ADMIN · STATUS PUSH
         </p>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
         {statuses.map((s) => {
           const info = TICKET_STATUS[s];
           const isPending = pending === s;
@@ -65,7 +68,7 @@ export function AdminControls({
               type="button"
               onClick={() => pushStatus(s)}
               disabled={pending !== null}
-              className="text-left rounded-lg px-3 py-2.5 bg-noctura-surface border border-noctura-border hover:border-noctura-accent transition text-xs disabled:opacity-50"
+              className="bg-noctura-surface border-noctura-border hover:border-noctura-accent rounded-lg border px-3 py-2.5 text-left text-xs transition disabled:opacity-50"
             >
               <div className="flex items-center gap-2">
                 <span
@@ -75,7 +78,7 @@ export function AdminControls({
                 <span className="font-semibold">{info.label}</span>
               </div>
               {isPending && (
-                <p className="text-[9px] text-noctura-ink-muted mt-1 font-mono">
+                <p className="text-noctura-ink-muted mt-1 font-mono text-[9px]">
                   PUSHING…
                 </p>
               )}
@@ -85,13 +88,13 @@ export function AdminControls({
       </div>
 
       {!hasAnyPass && (
-        <p className="text-[11px] text-noctura-ink-muted mt-3">
+        <p className="text-noctura-ink-muted mt-3 text-[11px]">
           Generate a pass first, then push updates to it here.
         </p>
       )}
 
       {outcome && (
-        <div className="mt-3 grid grid-cols-2 gap-2 text-[11px] font-mono">
+        <div className="mt-3 grid grid-cols-2 gap-2 font-mono text-[11px]">
           <ProviderOutcome label="apple" result={outcome.apple} />
           <ProviderOutcome label="google" result={outcome.google} />
         </div>
@@ -115,11 +118,11 @@ function ProviderOutcome({
         ? "text-noctura-ink-muted"
         : "text-red-400";
   return (
-    <div className="rounded bg-noctura-bg/50 px-2 py-1.5">
+    <div className="bg-noctura-bg/50 rounded px-2 py-1.5">
       <span className="text-noctura-ink-muted">{label}:</span>{" "}
       <span className={color}>{result.status}</span>
       {result.message && result.status === "error" && (
-        <p className="text-red-400/70 mt-0.5 truncate">{result.message}</p>
+        <p className="mt-0.5 truncate text-red-400/70">{result.message}</p>
       )}
     </div>
   );

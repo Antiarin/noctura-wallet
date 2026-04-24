@@ -87,12 +87,12 @@ curl -s http://localhost:3000/api/health | jq
 
 ## API routes
 
-| Route | Method | Purpose |
-|---|---|---|
-| `/api/health` | GET | Per-provider readiness status |
-| `/api/generate-apple-pass` | POST `{ name, tier }` | PassKit ticket creation |
-| `/api/generate-google-pass` | POST `{ name, tier }` | Google Wallet save JWT |
-| `/api/update-pass` | POST `{ status, appleTicketId?, googleObjectId? }` | Push update to both providers |
+| Route                       | Method                                             | Purpose                       |
+| --------------------------- | -------------------------------------------------- | ----------------------------- |
+| `/api/health`               | GET                                                | Per-provider readiness status |
+| `/api/generate-apple-pass`  | POST `{ name, tier }`                              | PassKit ticket creation       |
+| `/api/generate-google-pass` | POST `{ name, tier }`                              | Google Wallet save JWT        |
+| `/api/update-pass`          | POST `{ status, appleTicketId?, googleObjectId? }` | Push update to both providers |
 
 ## Deploy to Vercel
 

@@ -44,16 +44,14 @@ export function WalletButtons({ name, tier, onGenerated }: Props) {
         },
       );
 
-      const json = (await res.json().catch(() => null)) as
-        | {
-            error?: string;
-            code?: string;
-            ticketId?: string;
-            walletUrl?: string;
-            objectId?: string;
-            saveUrl?: string;
-          }
-        | null;
+      const json = (await res.json().catch(() => null)) as {
+        error?: string;
+        code?: string;
+        ticketId?: string;
+        walletUrl?: string;
+        objectId?: string;
+        saveUrl?: string;
+      } | null;
 
       if (!res.ok || !json) {
         setError({
@@ -92,7 +90,7 @@ export function WalletButtons({ name, tier, onGenerated }: Props) {
 
   return (
     <div className="space-y-3">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <WalletBadgeButton
           provider="apple"
           src="/apple-wallet-badge.svg"
@@ -122,7 +120,7 @@ export function WalletButtons({ name, tier, onGenerated }: Props) {
             {error.message}
           </p>
           {error.code === "not_configured" && (
-            <p className="text-xs text-red-300/70 mt-1">
+            <p className="mt-1 text-xs text-red-300/70">
               Add the provider&apos;s env vars in{" "}
               <code className="font-mono">.env.local</code> or Vercel and retry.
             </p>
@@ -162,10 +160,10 @@ function WalletBadgeButton({
       aria-busy={loading}
       className={[
         "relative flex h-14 items-center justify-center rounded-xl",
-        "border border-noctura-border-strong bg-black px-4",
-        "transition hover:border-noctura-accent",
+        "border-noctura-border-strong border bg-black px-4",
+        "hover:border-noctura-accent transition",
         "disabled:cursor-not-allowed disabled:opacity-40",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-noctura-accent",
+        "focus-visible:ring-noctura-accent focus-visible:ring-2 focus-visible:outline-none",
       ].join(" ")}
     >
       <Image
@@ -179,7 +177,7 @@ function WalletBadgeButton({
       {loading && (
         <span
           aria-hidden="true"
-          className="absolute inset-0 flex items-center justify-center rounded-xl bg-black/70 text-[10px] tracking-[0.3em] font-mono text-noctura-ink"
+          className="text-noctura-ink absolute inset-0 flex items-center justify-center rounded-xl bg-black/70 font-mono text-[10px] tracking-[0.3em]"
         >
           GENERATING…
         </span>

@@ -52,7 +52,6 @@ export function errorResponse(err: unknown): NextResponse<ErrorBody> {
   }
 
   const message = err instanceof Error ? err.message : "Unexpected error";
-  // eslint-disable-next-line no-console
   console.error("Unhandled route error:", err);
   return NextResponse.json(
     { error: message, code: "internal_error" },

@@ -24,8 +24,12 @@ export async function POST(request: Request) {
     const { status, appleTicketId, googleObjectId } = parsed.data;
 
     const [appleOutcome, googleOutcome] = await Promise.all([
-      runProvider(appleTicketId, () => updateTicketStatus(appleTicketId!, status)),
-      runProvider(googleObjectId, () => updateObjectStatus(googleObjectId!, status)),
+      runProvider(appleTicketId, () =>
+        updateTicketStatus(appleTicketId!, status),
+      ),
+      runProvider(googleObjectId, () =>
+        updateObjectStatus(googleObjectId!, status),
+      ),
     ]);
 
     return NextResponse.json({

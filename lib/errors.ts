@@ -8,7 +8,10 @@ export class ConfigError extends Error {
 
 export class ValidationError extends Error {
   readonly kind = "ValidationError" as const;
-  constructor(message: string, public readonly details?: unknown) {
+  constructor(
+    message: string,
+    public readonly details?: unknown,
+  ) {
     super(message);
     this.name = "ValidationError";
   }
