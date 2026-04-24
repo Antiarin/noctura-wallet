@@ -1,8 +1,8 @@
 export const EVENT = {
   title: "Midnight Signal",
   subtitle: "NOCTURA PRESENTS",
-  dateISO: "2025-12-13T23:00:00-05:00",
-  dateDisplay: "Sat, Dec 13 · 11:00 PM",
+  dateISO: "2026-12-12T23:00:00-05:00",
+  dateDisplay: "Sat, Dec 12 · 11:00 PM",
   doorsDisplay: "Doors 10:30 PM",
   venue: "Warehouse 42",
   address: "Bushwick, Brooklyn",
