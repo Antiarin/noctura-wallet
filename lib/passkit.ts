@@ -144,9 +144,10 @@ export async function updateTicketStatus(
   ticketId: string,
   status: TicketStatus,
 ): Promise<void> {
-  await passkitFetch<unknown>(`/eventTickets/ticket/${ticketId}`, {
+  await passkitFetch<unknown>("/eventTickets/ticket", {
     method: "PUT",
     body: {
+      id: ticketId,
       metaData: { status },
     },
   });
