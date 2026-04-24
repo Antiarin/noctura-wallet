@@ -100,9 +100,15 @@ export async function createTicket(
 
   const tierInfo = TIERS[input.tier];
 
+  const ticketNumber = `NCT-${Date.now().toString(36).toUpperCase()}-${Math.random()
+    .toString(36)
+    .slice(2, 6)
+    .toUpperCase()}`;
+
   const body = {
     passTemplateId: cfg.value.PASSKIT_TEMPLATE_ID,
     ticketTypeId: cfg.value.PASSKIT_TICKET_TYPE_ID,
+    ticketNumber,
     person: { displayName: input.name },
     event: {
       productionId: cfg.value.PASSKIT_PRODUCTION_ID,
